@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Quan Ly Chi Tieu</string>
+    <string name="home">Trang chủ</string>
+    <string name="profile">Cá nhân</string>
+    <string name="transaction">Giao dịch</string>
+    <string name="report">Báo cáo</string>
+    <string name="notification">Thông báo</string>
+    <string name="more">Khác</string>
+    <string name="begin_amount">Số dư đầu</string>
+    <string name="end_amount">Số dư cuối</string>
+</resources>
