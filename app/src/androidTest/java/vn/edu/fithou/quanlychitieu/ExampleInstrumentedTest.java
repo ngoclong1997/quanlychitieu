@@ -49,11 +49,24 @@ public class ExampleInstrumentedTest {
 //        currentAmount = sqLiteUtil.getCurrentMoney();
 //
         Transaction transaction = new Transaction(1000000, sqLiteUtil.getGroupById(1), "Thu tiền lương", new GregorianCalendar(2019, Calendar.OCTOBER, 5).getTime(), WalletType.BANK_CARD);
+        Transaction transactionx = new Transaction(1000000, sqLiteUtil.getGroupById(1), "Thu tiền lương", new GregorianCalendar(2019, Calendar.OCTOBER, 6).getTime(), WalletType.BANK_CARD);
+        Transaction transactiony = new Transaction(-600000, sqLiteUtil.getGroupById(3), "Thu tiền lương", new GregorianCalendar(2019, Calendar.OCTOBER, 6).getTime(), WalletType.BANK_CARD);
+        Transaction transactionz = new Transaction(-1500000, sqLiteUtil.getGroupById(4), "Thu tiền lương", new GregorianCalendar(2019, Calendar.OCTOBER, 6).getTime(), WalletType.BANK_CARD);
+        Transaction transactionzz = new Transaction(-1250000, sqLiteUtil.getGroupById(4), "Thu tiền lương", new GregorianCalendar(2019, Calendar.OCTOBER, 30).getTime(), WalletType.BANK_CARD);
+        Transaction transactionzx = new Transaction(1000000, sqLiteUtil.getGroupById(4), "Thu tiền lương", new GregorianCalendar(2019, Calendar.DECEMBER, 1).getTime(), WalletType.BANK_CARD);
 //
         Transaction transaction12 = new Transaction(-50000, sqLiteUtil.getGroupById(1), "Mua kẹo", Calendar.getInstance().getTime(), WalletType.NORMAL_WALLET);
+        Transaction transaction123 = new Transaction(1000000, sqLiteUtil.getGroupById(22), "Thu tiền lương", Calendar.getInstance().getTime(), WalletType.BANK_CARD);
 //
         sqLiteUtil.insertTransaction(transaction);
         sqLiteUtil.insertTransaction(transaction12);
+        sqLiteUtil.insertTransaction(transaction123);
+        sqLiteUtil.insertTransaction(transactionx);
+        sqLiteUtil.insertTransaction(transactiony);
+        sqLiteUtil.insertTransaction(transactionz);
+        sqLiteUtil.insertTransaction(transactionzz);
+        sqLiteUtil.insertTransaction(transactionzx);
+
 //
         List<Transaction> transactions = sqLiteUtil.getAllTransaction();
 //

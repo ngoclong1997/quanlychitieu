@@ -1,6 +1,7 @@
 package vn.edu.fithou.quanlychitieu.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
@@ -25,8 +29,10 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import vn.edu.fithou.quanlychitieu.R;
+import vn.edu.fithou.quanlychitieu.activity.AddTransaction;
 import vn.edu.fithou.quanlychitieu.adapter.TransactionListViewAdapter;
 import vn.edu.fithou.quanlychitieu.model.Transaction;
 import vn.edu.fithou.quanlychitieu.model.TransactionDate;
@@ -38,6 +44,8 @@ import vn.edu.fithou.quanlychitieu.util.DateUtil;
 import vn.edu.fithou.quanlychitieu.util.SQLiteUtil;
 
 public class TransactionFragment extends Fragment implements View.OnClickListener {
+
+    public static final int ADD_TRANS_RESULT_CODE = 1;
 
     private Date currentDate;
 
@@ -52,6 +60,10 @@ public class TransactionFragment extends Fragment implements View.OnClickListene
     RecyclerView rvTransaction;
 
     TransactionListViewAdapter adapter;
+
+    SwipeRefreshLayout swipeRefreshLayout;
+
+    FloatingActionButton fabAddTrans;
 
     @Nullable
     @Override
@@ -69,6 +81,8 @@ public class TransactionFragment extends Fragment implements View.OnClickListene
         tvNextPage = rootView.findViewById(R.id.tvNextPage);
         tvCurrentPage = rootView.findViewById(R.id.tvCurrentPage);
         tvNoTransaction = rootView.findViewById(R.id.tvNoTransaction);
+        swipeRefreshLayout = rootView.findViewById(R.id.srlTransaction);
+        fabAddTrans = rootView.findViewById(R.id.btnAddTransaction);
 
         progressDialog = new ProgressDialog(getActivity(), R.style.MyAlertDialogStyle);
         progressDialog.setCancelable(true);
@@ -83,8 +97,17 @@ public class TransactionFragment extends Fragment implements View.OnClickListene
         rvTransaction.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvTransaction.setAdapter(adapter);
 
+        fabAddTrans.setOnClickListener(this);
+
         fetchAndFillData();
         updatePagesTitle();
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchAndFillData();
+            }
+        });
         return rootView;
     }
 
@@ -96,6 +119,10 @@ public class TransactionFragment extends Fragment implements View.OnClickListene
                 break;
             case R.id.transaction_prev_page:
                 btnPrevPageClick();
+                break;
+            case R.id.btnAddTransaction:
+                Intent i = new Intent(getActivity(), AddTransaction.class);
+                startActivityForResult(i, ADD_TRANS_RESULT_CODE);
                 break;
         }
     }
@@ -135,10 +162,11 @@ public class TransactionFragment extends Fragment implements View.OnClickListene
     }
 
     private void fetchAndFillData() {
+
         progressDialog.setTitle("Đang tải");
         progressDialog.setMessage("Dữ liệu đang được lấy...");
         progressDialog.show();
-
+        swipeRefreshLayout.setRefreshing(false);
         Date firstDay = DateUtil.getFirstDayOfThisMonth(currentDate);
         Date lastDay = DateUtil.getLastDayOfThisMonth(currentDate);
         List<Transaction> transactions = sqLiteUtil.getTransactionInRange(firstDay, lastDay);

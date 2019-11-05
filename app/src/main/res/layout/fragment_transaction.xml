@@ -137,6 +137,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <vn.edu.fithou.quanlychitieu.util.MovableFloatingActionButton
+        android:id="@+id/btnAddTransaction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -148,6 +149,7 @@
 
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srlTransaction"
         android:layout_width="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_height="match_parent"

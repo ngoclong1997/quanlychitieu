@@ -49,5 +49,34 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextButton" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TextButtonBold" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="HeaderTitleText" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="EditTextBigSize" parent="Widget.AppCompat.EditText">
+        <item name="android:inputType">number</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:backgroundTint">@color/colorPrimary</item>
+    </style>
+
+    <style name="TextViewBigSize" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">20sp</item>
+        <item name="android:backgroundTint">@color/colorBlack</item>
+    </style>
+
+
     <color name="colorBlack">#000000</color>
 </resources>

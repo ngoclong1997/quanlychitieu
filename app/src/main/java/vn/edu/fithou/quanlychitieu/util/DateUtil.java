@@ -186,6 +186,10 @@ public class DateUtil {
         }
     }
 
+    public static String formatDate(Date date) {
+        return getDayOfWeek(date) + ", " + getDayOfMonth(date) + " " + getMonthAndYear(date);
+    }
+
     public static int getYear(Date currentDate) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(currentDate);
