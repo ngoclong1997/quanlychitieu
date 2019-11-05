@@ -11,7 +11,7 @@
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         app:elevation="0dp"
-        android:background="@drawable/bg_header">
+        android:background="@drawable/bg_header_border_bottom">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,6 +46,7 @@
                         android:text="Tổng tài sản" />
 
                     <TextView
+                        android:id="@+id/tvTotalMoney"
                         style="@style/MediumValueBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -74,9 +75,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/transaction_prev_page"
@@ -87,12 +86,13 @@
                 android:focusable="true">
 
                 <TextView
+                    android:id="@+id/tvPreviousPage"
                     style="@style/TransactionPageStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tháng trước"
                     android:textAlignment="textStart"
-
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
                      />
             </LinearLayout>
 
@@ -105,11 +105,13 @@
                 android:focusable="true">
 
                 <TextView
+                    android:id="@+id/tvCurrentPage"
                     style="@style/TransactionPageStyleActive"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tháng này"
                     android:textAlignment="center"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
                      />
             </LinearLayout>
 
@@ -122,23 +124,27 @@
                 android:focusable="true">
 
                 <TextView
+                    android:id="@+id/tvNextPage"
                     style="@style/TransactionPageStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tương lai"
-                    android:textAlignment="textEnd"/>
+                    android:textAlignment="textEnd"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"/>
             </LinearLayout>
         </LinearLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <vn.edu.fithou.quanlychitieu.util.MovableFloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="20dp"
         android:backgroundTint="@color/colorPrimary"
         android:src="@drawable/ic_add_black_24dp" />
+
+
 
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -152,8 +158,15 @@
             android:id="@+id/rvTransaction"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
         </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/tvNoTransaction"
+            android:gravity="center"
+            android:text="Không có giao dịch"
+            style="@style/MediumValueBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

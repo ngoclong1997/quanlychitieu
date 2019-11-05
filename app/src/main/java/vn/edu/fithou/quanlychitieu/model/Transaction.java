@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class Transaction {
 
+    private int id;
+
     private double moneyAmount;
 
     private TransactionGroup group;
@@ -15,15 +17,32 @@ public class Transaction {
     //Vi thuong hay the ATM
     private int walletType;
 
-    public Transaction(double moneyAmount, TransactionGroup group, String note, Date date, int type) {
+    public Transaction(double moneyAmount, TransactionGroup group, String note, Date date, int walletType) {
         this.moneyAmount = moneyAmount;
         this.group = group;
         this.note = note;
         this.date = date;
-        this.walletType = type;
+        this.walletType = walletType;
+    }
+
+    public Transaction(int id, double moneyAmount, TransactionGroup group, String note, Date date, int walletType) {
+        this.id = id;
+        this.moneyAmount = moneyAmount;
+        this.group = group;
+        this.note = note;
+        this.date = date;
+        this.walletType = walletType;
     }
 
     public Transaction() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getMoneyAmount() {

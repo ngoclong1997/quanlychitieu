@@ -17,6 +17,12 @@ public class TransactionGroup {
         this.type = type;
     }
 
+    public TransactionGroup(int id, String name, int type) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+    }
+
     public TransactionGroup() {
     }
 

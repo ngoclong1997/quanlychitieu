@@ -20,6 +20,8 @@ import vn.edu.fithou.quanlychitieu.model.TransactionGroup;
 import vn.edu.fithou.quanlychitieu.model.TransactionStatistic;
 import vn.edu.fithou.quanlychitieu.model.WalletType;
 import vn.edu.fithou.quanlychitieu.util.ConversionUtil;
+import vn.edu.fithou.quanlychitieu.util.DateUtil;
+import vn.edu.fithou.quanlychitieu.util.GroupIconUtil;
 
 public class TransactionListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -97,7 +99,7 @@ public class TransactionListViewAdapter extends RecyclerView.Adapter<RecyclerVie
         void setTransactionStatistic(TransactionStatistic transactionStatistic) {
             tvBeginMoney.setText(ConversionUtil.doubleToString(transactionStatistic.getBeginMoneyAmount()));
             tvEndMoney.setText(ConversionUtil.doubleToString(transactionStatistic.getEndMoneyAmount()));
-            tvRemainMoney.setText(ConversionUtil.doubleToString(transactionStatistic.getBeginMoneyAmount() - transactionStatistic.getEndMoneyAmount()));
+            tvRemainMoney.setText(ConversionUtil.doubleToString(transactionStatistic.getEndMoneyAmount() - transactionStatistic.getBeginMoneyAmount()));
         }
     }
 
@@ -117,10 +119,10 @@ public class TransactionListViewAdapter extends RecyclerView.Adapter<RecyclerVie
         }
 
         void setTransactionDate(TransactionDate transactionDate) {
-            tvDayOfWeek.setText(ConversionUtil.getDayOfWeek(transactionDate.getDate()));
-            tvDayOfMonth.setText(ConversionUtil.getDayOfMonth(transactionDate.getDate()));
+            tvDayOfWeek.setText(DateUtil.getDayOfWeek(transactionDate.getDate()));
+            tvDayOfMonth.setText(DateUtil.getDayOfMonth(transactionDate.getDate()));
             tvAmount.setText(ConversionUtil.doubleToString(transactionDate.getMoneyAmount()));
-            tvMonth.setText(ConversionUtil.getMonthAndYear(transactionDate.getDate()));
+            tvMonth.setText(DateUtil.getMonthAndYear(transactionDate.getDate()));
         }
     }
 
@@ -142,7 +144,7 @@ public class TransactionListViewAdapter extends RecyclerView.Adapter<RecyclerVie
         }
 
         void setTransaction(Transaction transaction) {
-            ivTransactionGroupIcon.setImageResource(transaction.getGroup().getIconResource());
+            ivTransactionGroupIcon.setImageResource(GroupIconUtil.getGroupIcon(transaction.getGroup()));
             tvGroupName.setText(transaction.getGroup().getName());
             tvNote.setText(transaction.getNote());
             tvType.setText(transaction.getWalletType() == WalletType.BANK_CARD ? "Thẻ ngân hàng" : "Ví thường");
